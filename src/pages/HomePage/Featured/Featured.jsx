@@ -31,7 +31,7 @@ const Featured = () => {
               Eaque repellat recusandae ad laudantium tempore consequatur
               consequuntur omnis ullam maxime tenetur.
             </p>
-            <button className="uppercase border-b-4 px-6 py-3 font-semibold rounded-lg border-black">
+            <button className="uppercase btn btn-outline border-0 border-b-4 font-semibold text-white">
               Read more
             </button>
           </div>
