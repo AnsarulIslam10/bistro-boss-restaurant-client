@@ -35,28 +35,28 @@ const MenuPage = () => {
       {/* dessert menu items */}
       <MenuCategory
         items={desserts}
-        title={"Desserts"}
+        title={"desserts"}
         description="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         coverImg={dessertBg}
       ></MenuCategory>
       {/* pizza menu items */}
       <MenuCategory
         items={pizza}
-        title={"Pizza"}
+        title={"pizza"}
         description="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         coverImg={pizzaBg}
       ></MenuCategory>
       {/* salad menu items */}
       <MenuCategory
         items={salad}
-        title={"Salad"}
+        title={"salad"}
         description="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         coverImg={saladBg}
       ></MenuCategory>
       {/* soup menu items */}
       <MenuCategory
         items={soup}
-        title={"Soup"}
+        title={"soup"}
         description="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         coverImg={soupBg}
       ></MenuCategory>

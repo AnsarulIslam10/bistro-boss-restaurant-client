@@ -9,7 +9,7 @@ const Navbar = () => {
         <NavLink
           to={"/"}
           className={({ isActive }) =>
-            `font-bold ${isActive ? "text-[#EEFF25]" : ""}`
+            `font-bold ${isActive ? " text-[#EEFF25]" : ""}`
           }
         >
           HOME
@@ -47,12 +47,12 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to={"/our-shop"}
+          to={"/order/salad"}
           className={({ isActive }) =>
             `font-bold ${isActive ? "text-[#EEFF25]" : ""}`
           }
         >
-          OUR SHOP
+          ORDER FOOD
         </NavLink>
       </li>
     </>
