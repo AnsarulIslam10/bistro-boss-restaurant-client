@@ -13,12 +13,12 @@ const Featured = () => {
         backgroundAttachment: 'fixed'
       }}
     >
-      <div className="bg-black/60  px-32 pb-28 pt-8">
+      <div className="bg-black/60 pb-8 pt-1 sm:py-16 sm:px-12 md:pb-28 md:py-32 md:pt-8">
         <SectionTitle
           heading={"FROM OUR MENU"}
           subHeading={"---Check it out---"}
         ></SectionTitle>
-        <div className="flex justify-center items-center gap-16">
+        <div className="flex justify-center flex-col sm:flex-row items-center sm:gap-16 gap-3 px-2">
           <div>
             <img src={featuredImg} alt="" />
           </div>

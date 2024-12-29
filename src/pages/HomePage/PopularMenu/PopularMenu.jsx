@@ -15,7 +15,7 @@ const PopularMenu = () => {
   }, []);
   console.log(menu);
   return (
-    <section className="mb-32">
+    <section className="mb-32 px-2">
       <SectionTitle
         heading={"FROM OUR MENU"}
         subHeading={"---Check it out---"}

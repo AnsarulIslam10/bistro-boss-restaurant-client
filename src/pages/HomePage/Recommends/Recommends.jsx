@@ -3,7 +3,7 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const Recommends = () => {
   return (
-    <section className="my-32">
+    <section className="my-32 px-2">
       <SectionTitle
         heading={"CHEF RECOMMENDS"}
         subHeading={"---Should Try---"}

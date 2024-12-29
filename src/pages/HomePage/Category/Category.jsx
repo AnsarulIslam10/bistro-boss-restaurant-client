@@ -26,6 +26,7 @@ const Category = () => {
         ></SectionTitle>
         <Swiper
           slidesPerView={4}
+          spaceBetween={10}
           pagination={{
             clickable: true,
           }}
@@ -34,32 +35,32 @@ const Category = () => {
         >
           <SwiperSlide>
             <img src={slide1} alt="" />
-            <h3 className="text-4xl uppercase text-center -mt-20 font-semibold text-white/50 mr-8">
+            <h3 className="text-xl sm:text-2xl md:text-4xl uppercase text-center -mt-20 font-semibold text-white/50 mr-8">
               Salads
             </h3>
           </SwiperSlide>
           <SwiperSlide>
             <img src={slide2} alt="" />
-            <h3 className="text-4xl uppercase text-center -mt-20 font-semibold text-white/50 mr-8">
+            <h3 className="text-xl sm:text-2xl md:text-4xl uppercase text-center -mt-20 font-semibold text-white/50 mr-8">
               Pizzas
             </h3>
           </SwiperSlide>
           <SwiperSlide>
             <img src={slide3} alt="" />
 
-            <h3 className="text-4xl uppercase text-center -mt-20 font-semibold text-white/50 mr-8">
+            <h3 className="text-xl sm:text-2xl md:text-4xl uppercase text-center -mt-20 font-semibold text-white/50 mr-8">
               Soups
             </h3>
           </SwiperSlide>
           <SwiperSlide>
             <img src={slide4} alt="" />
-            <h3 className="text-4xl uppercase text-center -mt-20 font-semibold text-white/50 mr-8">
+            <h3 className="text-xl sm:text-2xl md:text-4xl uppercase text-center -mt-20 font-semibold text-white/50 mr-8">
               Desserts
             </h3>
           </SwiperSlide>
           <SwiperSlide>
             <img src={slide5} alt="" />
-            <h3 className="text-4xl uppercase text-center -mt-20 font-semibold text-white/50 mr-8">
+            <h3 className="text-xl sm:text-2xl md:text-4xl uppercase text-center -mt-20 font-semibold text-white/50 mr-8">
               Salads
             </h3>
           </SwiperSlide>

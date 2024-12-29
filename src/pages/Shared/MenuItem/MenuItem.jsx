@@ -4,7 +4,7 @@ const MenuItem = ({ item }) => {
   const { name, image, price, recipe } = item;
   return (
     <div className="flex">
-      <div className="flex items-cente gap-8">
+      <div className="flex flex-col sm:flex-row gap-8">
         <img
           className="h-24 w-28 rounded-tr-full object-center rounded-br-full rounded-bl-full"
           src={image}
@@ -15,7 +15,7 @@ const MenuItem = ({ item }) => {
           <p className="text-[#737373] max-w-sm">{recipe}</p>
         </div>
       </div>
-      <p className="text-[#BB8506] text-xl">${price}</p>
+      <p className="text-[#BB8506] text-xl mt-[125px] sm:mt-0">${price}</p>
     </div>
   );
 };

@@ -86,8 +86,8 @@ const Navbar = () => {
             </ul>
           </div>
           <a className="text-xl">
-          <p className="uppercase text-3xl font-bold">Bestro Boss</p>
-          <p className="uppercase text-2xl tracking-widest">Restaurant</p>
+          <p className="uppercase text-sm md:text-3xl font-bold">Bestro Boss</p>
+          <p className="uppercase text-xs md:text-2xl tracking-widest">Restaurant</p>
           </a>
           
         </div>
