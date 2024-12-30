@@ -9,7 +9,7 @@ const Navbar = () => {
         <NavLink
           to={"/"}
           className={({ isActive }) =>
-            `font-bold ${isActive ? " text-[#EEFF25]" : ""}`
+            `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${isActive ? " text-[#EEFF25]" : ""}`
           }
         >
           HOME
@@ -19,7 +19,7 @@ const Navbar = () => {
         <NavLink
           to={"/contact-us"}
           className={({ isActive }) =>
-            `font-bold ${isActive ? "text-[#EEFF25]" : ""}`
+            `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${isActive ? " text-[#EEFF25]" : ""}`
           }
         >
           CONTACT US
@@ -29,7 +29,7 @@ const Navbar = () => {
         <NavLink
           to={"/dashboard"}
           className={({ isActive }) =>
-            `font-bold ${isActive ? "text-[#EEFF25]" : ""}`
+            `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${isActive ? " text-[#EEFF25]" : ""}`
           }
         >
           DASHBOARD
@@ -39,7 +39,7 @@ const Navbar = () => {
         <NavLink
           to={"/menu"}
           className={({ isActive }) =>
-            `font-bold ${isActive ? "text-[#EEFF25]" : ""}`
+            `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${isActive ? " text-[#EEFF25]" : ""}`
           }
         >
           OUR MENU
@@ -49,7 +49,7 @@ const Navbar = () => {
         <NavLink
           to={"/order/salad"}
           className={({ isActive }) =>
-            `font-bold ${isActive ? "text-[#EEFF25]" : ""}`
+            `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${isActive ? " text-[#EEFF25]" : ""}`
           }
         >
           ORDER FOOD
@@ -99,7 +99,7 @@ const Navbar = () => {
           <a href="">
             <img src={cartImg} className="w-12 mr-5" alt="" />
           </a>
-          <a className=" flex items-center font-bold uppercase gap-1">Sign Out <FaUserCircle className="text-3xl" /></a>
+          <a className="flex cursor-pointer items-center font-bold uppercase gap-1">Sign Out <FaUserCircle className="text-3xl" /></a>
           
         </div>
       </div>
