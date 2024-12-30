@@ -12,7 +12,7 @@ const FoodCard = ({ item }) => {
         <h2 className="text-2xl font-semibold mb-2">{name}</h2>
         <p className="text-[#151515] mb-6">{recipe}</p>
         <div className="card-actions">
-          <button className="uppercase btn btn-outline border-0 border-b-4 font-semibold text-[#BB8506]">
+          <button className="uppercase btn bg-[#E8E8E8] btn-outline border-0 border-b-4 font-semibold text-xl hover:text-[#BB8506] text-[#BB8506]">
             Add to cart
           </button>
         </div>
