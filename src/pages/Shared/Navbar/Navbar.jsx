@@ -1,7 +1,7 @@
 import React from "react";
 import { FaUserCircle } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
-import cartImg from "../../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png"
+import { Link, NavLink } from "react-router-dom";
+import cartImg from "../../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png";
 const Navbar = () => {
   const links = (
     <>
@@ -9,7 +9,9 @@ const Navbar = () => {
         <NavLink
           to={"/"}
           className={({ isActive }) =>
-            `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${isActive ? " text-[#EEFF25]" : ""}`
+            `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${
+              isActive ? " text-[#EEFF25]" : ""
+            }`
           }
         >
           HOME
@@ -19,7 +21,9 @@ const Navbar = () => {
         <NavLink
           to={"/contact-us"}
           className={({ isActive }) =>
-            `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${isActive ? " text-[#EEFF25]" : ""}`
+            `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${
+              isActive ? " text-[#EEFF25]" : ""
+            }`
           }
         >
           CONTACT US
@@ -29,7 +33,9 @@ const Navbar = () => {
         <NavLink
           to={"/dashboard"}
           className={({ isActive }) =>
-            `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${isActive ? " text-[#EEFF25]" : ""}`
+            `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${
+              isActive ? " text-[#EEFF25]" : ""
+            }`
           }
         >
           DASHBOARD
@@ -39,7 +45,9 @@ const Navbar = () => {
         <NavLink
           to={"/menu"}
           className={({ isActive }) =>
-            `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${isActive ? " text-[#EEFF25]" : ""}`
+            `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${
+              isActive ? " text-[#EEFF25]" : ""
+            }`
           }
         >
           OUR MENU
@@ -49,7 +57,9 @@ const Navbar = () => {
         <NavLink
           to={"/order/salad"}
           className={({ isActive }) =>
-            `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${isActive ? " text-[#EEFF25]" : ""}`
+            `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${
+              isActive ? " text-[#EEFF25]" : ""
+            }`
           }
         >
           ORDER FOOD
@@ -86,10 +96,13 @@ const Navbar = () => {
             </ul>
           </div>
           <a className="text-xl">
-          <p className="uppercase text-sm md:text-3xl font-bold">Bestro Boss</p>
-          <p className="uppercase text-xs md:text-2xl tracking-widest">Restaurant</p>
+            <p className="uppercase text-sm md:text-3xl font-bold">
+              Bestro Boss
+            </p>
+            <p className="uppercase text-xs md:text-2xl tracking-widest">
+              Restaurant
+            </p>
           </a>
-          
         </div>
 
         <div className="">
@@ -99,8 +112,10 @@ const Navbar = () => {
           <a href="">
             <img src={cartImg} className="w-12 mr-5" alt="" />
           </a>
-          <a className="flex cursor-pointer items-center font-bold uppercase gap-1">Sign Out <FaUserCircle className="text-3xl" /></a>
-          
+          <Link to={'/login'} className="font-bold uppercase">Login</Link>
+          {/* <a className="flex cursor-pointer items-center font-bold uppercase gap-1">
+            Sign Out <FaUserCircle className="text-3xl" />
+          </a> */}
         </div>
       </div>
     </>
