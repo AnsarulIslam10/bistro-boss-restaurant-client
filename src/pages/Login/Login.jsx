@@ -7,12 +7,13 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
+  const { signInUser } = useContext(AuthContext);
   const captchaRef = useRef();
   const [disabled, setDisabled] = useState(true);
-
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -23,6 +24,11 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log({ email, password });
+    signInUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleValidateCaptch = () => {
@@ -48,7 +54,7 @@ const Login = () => {
         <div className="text-center lg:text-left">
           <img src={loginImg} alt="" />
         </div>
-        <div className="card w-full max-w-sm shrink-0 ">
+        <div className="card w-full max-w-md shrink-0 ">
           <form onSubmit={handleLogin} className="card-body">
             <h2 className="text-center text-[40px] font-bold mb-5 text-[#151515]">
               Login
@@ -106,7 +112,7 @@ const Login = () => {
 
             <p className="text-[#d1a054] text-center text-lg">
               New here?{" "}
-              <Link to={"/register"} className="font-semibold">
+              <Link to={"/signup"} className="font-semibold">
                 Create a New Account
               </Link>
             </p>
