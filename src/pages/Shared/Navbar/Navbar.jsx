@@ -3,6 +3,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import cartImg from "../../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { FaCartShopping } from "react-icons/fa6";
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
 
@@ -116,9 +117,12 @@ const Navbar = () => {
           <div className="hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
-          <a href="">
-            <img src={cartImg} className="w-12 mr-5" alt="" />
-          </a>
+          <Link href="">
+            <button className="flex items-center">
+              <FaCartShopping className="text-3xl"/>
+              <div className="badge badge-sm mr-2 mb-4 badge-secondary">+99</div>
+            </button>
+          </Link>
           {user && user?.email ? (
             <>
               <button
