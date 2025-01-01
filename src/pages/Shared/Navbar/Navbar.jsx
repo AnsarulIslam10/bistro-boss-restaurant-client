@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import cartImg from "../../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png";
+import { AuthContext } from "../../../providers/AuthProvider";
 const Navbar = () => {
+  const { user, signOutUser } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    signOutUser();
+    toast.success("Sign Out Successful");
+  };
   const links = (
     <>
       <li>
@@ -112,10 +119,18 @@ const Navbar = () => {
           <a href="">
             <img src={cartImg} className="w-12 mr-5" alt="" />
           </a>
-          <Link to={'/login'} className="font-bold uppercase">Login</Link>
-          {/* <a className="flex cursor-pointer items-center font-bold uppercase gap-1">
-            Sign Out <FaUserCircle className="text-3xl" />
-          </a> */}
+          {user && user?.email ? (
+            <button
+              onClick={handleSignOut}
+              className="flex cursor-pointer items-center font-bold uppercase gap-1"
+            >
+              Sign Out <FaUserCircle className="text-3xl" />
+            </button>
+          ) : (
+            <Link to={"/login"} className="font-bold uppercase">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </>

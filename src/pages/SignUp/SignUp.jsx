@@ -1,17 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import bgImg from "../../assets/others/authentication.png";
 import loginImg from "../../assets/others/authentication2.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../../providers/AuthProvider";
+import { toast } from "react-toastify";
 const SignUp = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { createUser } = useContext(AuthContext);
+  const onSubmit = (data) => {
+    console.log(data);
+    createUser(data.email, data.password).then((result) => {
+      const user = result.user;
+      console.log(user);
+      toast.success("Sign Up successful");
+      navigate(location?.state ? location.state : "/");
+    });
+  };
 
   return (
     <div
@@ -23,6 +38,9 @@ const SignUp = () => {
         backgroundPosition: "center",
       }}
     >
+      <Helmet>
+        <title>Bistro Boss | Sign Up</title>
+      </Helmet>
       <div className="hero-content flex-col shadow-custom-dark lg:flex-row-reverse">
         <div className="text-center lg:text-left">
           <img src={loginImg} alt="" />
@@ -73,6 +91,7 @@ const SignUp = () => {
                   required: true,
                   minLength: 6,
                   maxLength: 20,
+                  pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
                 })}
                 name="password"
                 className="input input-bordered"
@@ -85,6 +104,8 @@ const SignUp = () => {
                     ? "Password must be at least 6 characters"
                     : errors.password.type === "maxLength"
                     ? "Password must not be more than 20 characters"
+                    : errors.password.type === "pattern"
+                    ? "password must have uppercase, one lowercase, one number and one speacial charecter"
                     : ""}
                 </span>
               )}

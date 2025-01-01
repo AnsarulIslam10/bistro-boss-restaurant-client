@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import bgImg from "../../assets/others/authentication.png";
 import loginImg from "../../assets/others/authentication2.png";
 import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
@@ -9,11 +9,15 @@ import {
 } from "react-simple-captcha";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import { Helmet } from "react-helmet-async";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { signInUser } = useContext(AuthContext);
   const captchaRef = useRef();
   const [disabled, setDisabled] = useState(true);
+  const location = useLocation()
+  const navigate = useNavigate()
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -27,6 +31,9 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         console.log(result.user);
+        toast.success("Login successful");
+        navigate(location?.state ? location.state : "/");
+
       })
       .catch((err) => console.log(err));
   };
@@ -50,6 +57,9 @@ const Login = () => {
         backgroundPosition: "center",
       }}
     >
+      <Helmet>
+        <title>Bistro Boss | Login</title>
+      </Helmet>
       <div className="hero-content flex-col shadow-custom-dark lg:flex-row">
         <div className="text-center lg:text-left">
           <img src={loginImg} alt="" />
