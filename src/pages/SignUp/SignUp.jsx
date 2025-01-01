@@ -10,21 +10,28 @@ import { toast } from "react-toastify";
 const SignUp = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { createUser, updateUserProfile } = useContext(AuthContext);
 
   const {
     register,
     handleSubmit,
+    reset,
     watch,
     formState: { errors },
   } = useForm();
-  const { createUser } = useContext(AuthContext);
   const onSubmit = (data) => {
     console.log(data);
-    createUser(data.email, data.password).then((result) => {
+    createUser(data.email, data.password)
+    .then((result) => {
       const user = result.user;
       console.log(user);
+      updateUserProfile({displayName: data.name, photoURL: data.photoURL});
       toast.success("Sign Up successful");
       navigate(location?.state ? location.state : "/");
+    }).catch((err) => {
+      if (err && err.code) {
+       toast.error(err.code)
+      }
     });
   };
 
@@ -63,6 +70,21 @@ const SignUp = () => {
               />
               {errors.name && (
                 <span className="text-red-500">Name is required*</span>
+              )}
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="text-lg font-semibold">Photo URL</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Type here"
+                {...register("photoURL", { required: true })}
+                name="photoURL"
+                className="input input-bordered"
+              />
+              {errors.photoURL && (
+                <span className="text-red-500">Photo URL is required*</span>
               )}
             </div>
             <div className="form-control">

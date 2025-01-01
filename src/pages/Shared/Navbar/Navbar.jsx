@@ -120,12 +120,24 @@ const Navbar = () => {
             <img src={cartImg} className="w-12 mr-5" alt="" />
           </a>
           {user && user?.email ? (
-            <button
-              onClick={handleSignOut}
-              className="flex cursor-pointer items-center font-bold uppercase gap-1"
-            >
-              Sign Out <FaUserCircle className="text-3xl" />
-            </button>
+            <>
+              <button
+                onClick={handleSignOut}
+                className="flex cursor-pointer items-center font-bold uppercase gap-1"
+              >
+                Sign Out{" "}
+              </button>
+              <div
+                className="tooltip tooltip-bottom ml-2"
+                data-tip={user?.displayName}
+              >
+                <img
+                  className="w-10 h-10 cursor-pointer rounded-full object-cover"
+                  src={user?.photoURL}
+                  alt=""
+                />
+              </div>
+            </>
           ) : (
             <Link to={"/login"} className="font-bold uppercase">
               Login
