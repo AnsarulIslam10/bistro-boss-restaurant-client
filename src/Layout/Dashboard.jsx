@@ -9,8 +9,10 @@ import {
 } from "react-icons/fa";
 import { MdReviews } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
+import useCart from "../hooks/useCart";
 
 const Dashboard = () => {
+    const [cart] = useCart()
   return (
     <div className="flex">
       {/* Dashboard sidebar */}
@@ -45,7 +47,7 @@ const Dashboard = () => {
               to={"/dashboard/my-cart"}
               className={`flex items-center uppercase`}
             >
-              <FaShoppingCart /> My Cart
+              <FaShoppingCart /> My Cart <span className="badge badge-sm badge-primary ml-1">{cart.length}</span>
             </NavLink>
           </li>
           <li>

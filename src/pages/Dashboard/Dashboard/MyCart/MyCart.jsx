@@ -1,11 +1,39 @@
-import { FaTrash } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
 import useCart from "../../../../hooks/useCart";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const MyCart = () => {
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
+  const axiosSecure = useAxiosSecure();
   const totalPrice = parseFloat(
     cart.reduce((total, item) => total + item.price, 0)
   ).toFixed(1);
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/carts/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+            refetch()
+          }
+        });
+      }
+    });
+  };
   return (
     <div className="w-4/5 mx-auto">
       <div className="flex items-center justify-between p-10">
@@ -43,8 +71,11 @@ const MyCart = () => {
                 <td>{item.name}</td>
                 <td>{item.price}$</td>
                 <th>
-                  <button className="btn btn-ghost btn-xs bg-red-500 rounded-none btn-square text-white">
-                    <FaTrash />
+                  <button
+                    onClick={() => handleDelete(item._id)}
+                    className="btn btn-ghost btn-xs bg-red-500 rounded-none btn-square text-white"
+                  >
+                    <FaRegTrashAlt />
                   </button>
                 </th>
               </tr>
