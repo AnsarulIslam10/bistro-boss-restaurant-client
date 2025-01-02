@@ -4,8 +4,10 @@ import { Link, NavLink } from "react-router-dom";
 import cartImg from "../../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { FaCartShopping } from "react-icons/fa6";
+import useCart from "../../../hooks/useCart";
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
+  const [cart] = useCart()
 
   const handleSignOut = () => {
     signOutUser();
@@ -120,7 +122,7 @@ const Navbar = () => {
           <Link href="">
             <button className="flex items-center">
               <FaCartShopping className="text-3xl"/>
-              <div className="badge badge-sm mr-2 mb-4 badge-secondary">+99</div>
+              <div className="badge badge-sm mr-2 mb-4 badge-secondary">{cart.length}</div>
             </button>
           </Link>
           {user && user?.email ? (

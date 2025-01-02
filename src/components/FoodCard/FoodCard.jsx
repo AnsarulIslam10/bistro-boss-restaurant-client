@@ -1,17 +1,20 @@
-import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useCart from "../../hooks/useCart";
 
 const FoodCard = ({ item }) => {
+  const axiosSecure = useAxiosSecure()
+  const [, refetch] = useCart()
   const { image, name, recipe, price, _id } = item;
   const { user } = useAuth();
   const navigate = useNavigate()
   const location = useLocation()
-  const handleAddToCart = (food) => {
+
+  const handleAddToCart = () => {
     if (user && user.email) {
-      //TODO: send cart item to database
+      //send cart item to database
       const cartItem = {
         menuId: _id,
         email: user.email,
@@ -19,7 +22,7 @@ const FoodCard = ({ item }) => {
         image,
         price,
       }
-      axios.post('http://localhost:5000/carts', cartItem)
+      axiosSecure.post('/carts', cartItem)
       .then(res =>{
         console.log(res)
         if (res.data.insertedId) {
@@ -30,6 +33,8 @@ const FoodCard = ({ item }) => {
             showConfirmButton: false,
             timer: 1000
           });
+          // refetch cart
+          refetch();
         }
       })
 
@@ -63,7 +68,7 @@ const FoodCard = ({ item }) => {
         <p className="text-[#151515] mb-6">{recipe}</p>
         <div className="card-actions">
           <button
-            onClick={() => handleAddToCart(item)}
+            onClick={handleAddToCart}
             className="uppercase btn bg-[#E8E8E8] btn-outline border-0 border-b-4 font-semibold text-xl hover:text-[#BB8506] text-[#BB8506]"
           >
             Add to cart
