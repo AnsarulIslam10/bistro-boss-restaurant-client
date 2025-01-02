@@ -119,7 +119,7 @@ const Navbar = () => {
           <div className="hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
-          <Link href="">
+          <Link to={'/dashboard/my-cart'}>
             <button className="flex items-center">
               <FaCartShopping className="text-3xl"/>
               <div className="badge badge-sm mr-2 mb-4 badge-secondary">{cart.length}</div>
