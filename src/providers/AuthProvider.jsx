@@ -1,5 +1,6 @@
 import {
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -11,7 +12,7 @@ import { useState } from "react";
 import { createContext } from "react";
 import { auth } from "../firebase/firebase.init";
 import { toast } from "react-toastify";
-import { GoogleAuthProvider } from "firebase/auth/web-extension";
+
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);

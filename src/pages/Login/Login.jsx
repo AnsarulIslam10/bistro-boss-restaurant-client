@@ -1,16 +1,16 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import bgImg from "../../assets/others/authentication.png";
 import loginImg from "../../assets/others/authentication2.png";
-import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const { signInUser } = useContext(AuthContext);
@@ -121,11 +121,7 @@ const Login = () => {
             <p className="text-center my-4 text-xl font-medium text-[#444444]">
               Or sign in with
             </p>
-            <div className="text-5xl text-[#444444] justify-center flex gap-10 items-center">
-              <FaFacebookF className="rounded-full cursor-pointer hover:scale-110 transition-all duration-300 p-2 border border-black" />
-              <FaGoogle className="rounded-full cursor-pointer hover:scale-110 transition-all duration-300 p-2 border border-black" />
-              <FaGithub className="rounded-full cursor-pointer hover:scale-110 transition-all duration-300 p-2 border border-black" />
-            </div>
+            <SocialLogin></SocialLogin>
           </form>
         </div>
       </div>

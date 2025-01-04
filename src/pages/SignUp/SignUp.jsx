@@ -2,12 +2,15 @@ import React, { useContext } from "react";
 import bgImg from "../../assets/others/authentication.png";
 import loginImg from "../../assets/others/authentication2.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../providers/AuthProvider";
 import { toast } from "react-toastify";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
+
 const SignUp = () => {
+  const axiosPublic = useAxiosPublic();
   const location = useLocation();
   const navigate = useNavigate();
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -22,17 +25,33 @@ const SignUp = () => {
   const onSubmit = (data) => {
     console.log(data);
     createUser(data.email, data.password)
-    .then((result) => {
-      const user = result.user;
-      console.log(user);
-      updateUserProfile({displayName: data.name, photoURL: data.photoURL});
-      toast.success("Sign Up successful");
-      navigate(location?.state ? location.state : "/");
-    }).catch((err) => {
-      if (err && err.code) {
-       toast.error(err.code)
-      }
-    });
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        updateUserProfile({
+          displayName: data.name,
+          photoURL: data.photoURL,
+        })
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+        };
+
+        axiosPublic.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            console.log("user added to database")
+            reset()
+
+            toast.success("Sign Up successful");
+            navigate(location?.state ? location.state : "/");
+          }
+        });
+      })
+      .catch((err) => {
+        if (err && err.code) {
+          toast.error(err.code);
+        }
+      });
   };
 
   return (
@@ -148,11 +167,7 @@ const SignUp = () => {
             <p className="text-center my-4 text-xl font-medium text-[#444444]">
               Or sign up with
             </p>
-            <div className="text-5xl text-[#444444] justify-center flex gap-10 items-center">
-              <FaFacebookF className="rounded-full cursor-pointer hover:scale-110 transition-all duration-300 p-2 border border-black" />
-              <FaGoogle className="rounded-full cursor-pointer hover:scale-110 transition-all duration-300 p-2 border border-black" />
-              <FaGithub className="rounded-full cursor-pointer hover:scale-110 transition-all duration-300 p-2 border border-black" />
-            </div>
+            <SocialLogin></SocialLogin>
           </form>
         </div>
       </div>

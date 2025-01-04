@@ -5,6 +5,7 @@ import cartImg from "../../../assets/icon/151-1511569_cart-notifications-free-sh
 import { AuthContext } from "../../../providers/AuthProvider";
 import { FaCartShopping } from "react-icons/fa6";
 import useCart from "../../../hooks/useCart";
+import { toast } from "react-toastify";
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
   const [cart] = useCart()
