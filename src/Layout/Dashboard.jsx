@@ -23,7 +23,7 @@ const Dashboard = () => {
   return (
     <div className="flex absolute left-0 w-full mx-auto">
       {/* Dashboard sidebar */}
-      <div className="w-72 min-h-screen bg-[#D1A054] px-4 py-4">
+      <div className="w-72 h-screen bg-[#D1A054] px-4 py-4 fixed">
         <ul className="space-y-3">
           {isAdmin ? (
             <>
@@ -152,7 +152,7 @@ const Dashboard = () => {
         </ul>
       </div>
       {/* Dashboard content */}
-      <div className="flex-1">
+      <div className="flex-1 ml-72 overflow-auto">
         <Outlet></Outlet>
       </div>
     </div>
