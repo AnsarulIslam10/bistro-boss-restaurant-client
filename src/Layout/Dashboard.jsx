@@ -13,13 +13,13 @@ import { MdReviews } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
 import { GrContact } from "react-icons/gr";
-import { FaNoteSticky, FaSpoon } from "react-icons/fa6";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = useCart();
 
   //TODO: get isadmin
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div className="flex">
       {/* Dashboard sidebar */}
