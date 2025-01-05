@@ -96,7 +96,6 @@ const AddItems = () => {
               </div>
               <input
                 type="number"
-                min="0"
                 placeholder="price"
                 {...register("price", { required: true })}
                 className="input input-bordered w-full "
