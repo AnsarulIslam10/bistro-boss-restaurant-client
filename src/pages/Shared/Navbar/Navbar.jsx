@@ -12,7 +12,6 @@ const Navbar = () => {
 
   const handleSignOut = () => {
     signOutUser();
-    toast.success("Sign Out Successful");
   };
   const links = (
     <>
@@ -142,6 +141,7 @@ const Navbar = () => {
                   className="w-10 h-10 cursor-pointer rounded-full object-cover"
                   src={user?.photoURL}
                   alt=""
+                  referrerPolicy="no-referrer"
                 />
               </div>
             </>

@@ -9,6 +9,8 @@ import Dashboard from "../Layout/Dashboard";
 import MyCart from "../pages/Dashboard/Dashboard/MyCart/MyCart";
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import AddItems from "../pages/Dashboard/AddItems/AddItems";
+import AdminRoute from "./AdminRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -47,8 +49,12 @@ const router = createBrowserRouter([
 
       //admin router
       {
+        path: 'add-items',
+        element: <AdminRoute><AddItems></AddItems></AdminRoute>
+      },
+      {
         path: 'all-users',
-        element: <AllUsers></AllUsers>
+        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
       }
     ]
   }

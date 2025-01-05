@@ -21,9 +21,9 @@ const Dashboard = () => {
   //TODO: get isadmin
   const [isAdmin] = useAdmin();
   return (
-    <div className="flex">
+    <div className="flex absolute left-0 w-full mx-auto">
       {/* Dashboard sidebar */}
-      <div className="w-64 min-h-screen bg-[#D1A054] px-4 py-4">
+      <div className="w-72 min-h-screen bg-[#D1A054] px-4 py-4">
         <ul className="space-y-3">
           {isAdmin ? (
             <>
