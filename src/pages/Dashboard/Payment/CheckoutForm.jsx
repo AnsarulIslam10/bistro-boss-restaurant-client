@@ -3,23 +3,26 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCart from "../../../hooks/useCart";
+import useAuth from "../../../hooks/useAuth";
 
 const CheckoutForm = () => {
   const [error, setError] = useState("");
-  const [clientSecret, setClientSecret] = useState("")
+  const [clientSecret, setClientSecret] = useState("");
+  const [transactionId, setTransactionId] = useState("")
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
-  const [cart] = useCart()
-  const totalPrice = cart.reduce((total, item) =>total + item.price , 0)
-  
-  useEffect(() => {
-    axiosSecure.post('/create-payment-intent', {price: totalPrice})
-    .then(res => {
-        console.log(res.data.clientSecret)
-        setClientSecret(res.data.clientSecret)
-    })
+  const { user } = useAuth();
+  const [cart] = useCart();
+  const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
+  useEffect(() => {
+    axiosSecure
+      .post("/create-payment-intent", { price: totalPrice })
+      .then((res) => {
+        console.log(res.data.clientSecret);
+        setClientSecret(res.data.clientSecret);
+      });
   }, [axiosSecure, totalPrice]);
 
   const handleSubmit = async (e) => {
@@ -43,6 +46,28 @@ const CheckoutForm = () => {
     } else {
       console.log("payment method-->", paymentMethod);
       setError("");
+    }
+
+    //confirm payment
+    const { paymentIntent, error: confirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: user?.displayName || "anonymous",
+            email: user?.email || "anonymous",
+          },
+        },
+      });
+
+    if (confirmError) {
+      console.log("confirm error", confirmError);
+    } else {
+      console.log("payment intent", paymentIntent);
+      if (paymentIntent.status === 'succeeded') {
+        console.log('transaction id', paymentIntent.id)
+        setTransactionId(paymentIntent.id)
+      }
     }
   };
   return (
@@ -73,6 +98,7 @@ const CheckoutForm = () => {
           Pay
         </button>
       </div>
+      {transactionId && <p className="text-green-600 font-semibold mt-4 text-center ">Your transaction id: <span className="text-green-700 font-normal">{transactionId}</span></p>}
     </form>
   );
 };
