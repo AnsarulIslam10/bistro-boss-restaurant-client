@@ -2,6 +2,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import useCart from "../../../../hooks/useCart";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
@@ -28,7 +29,7 @@ const MyCart = () => {
               text: "Your file has been deleted.",
               icon: "success",
             });
-            refetch()
+            refetch();
           }
         });
       }
@@ -39,7 +40,9 @@ const MyCart = () => {
       <div className="flex items-center justify-between p-10">
         <h2>Items: {cart.length}</h2>
         <h2>Total Price: ${totalPrice}</h2>
-        <button className="btn">PAY</button>
+        <Link disabled={!cart.length} to={"/dashboard/payment"} className="btn">
+          PAY
+        </Link>
       </div>
       <div className="overflow-x-auto">
         <table className="table">
