@@ -6,7 +6,7 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import MainLayout from "../layout/MainLayout";
 import Dashboard from "../Layout/Dashboard";
-import MyCart from "../pages/Dashboard/Dashboard/MyCart/MyCart";
+
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AddItems from "../pages/Dashboard/AddItems/AddItems";
@@ -15,6 +15,9 @@ import ManageItems from "../pages/Dashboard/ManageItems/ManageItems";
 import UpdateItem from "../pages/Dashboard/UpdateItem/UpdateItem";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import MyCart from "../pages/Dashboard/MyCart/MyCart/MyCart";
+import UserHome from "../pages/Dashboard/UserHome/UserHome";
+import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +54,10 @@ const router = createBrowserRouter([
     ),
     children: [
       {
+        path: "user-home",
+        element: <UserHome></UserHome>,
+      },
+      {
         path: "my-cart",
         element: <MyCart></MyCart>,
       },
@@ -64,6 +71,14 @@ const router = createBrowserRouter([
       },
 
       //admin router
+      {
+        path: "admin-home",
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
+      },
       {
         path: "add-items",
         element: (

@@ -6,9 +6,11 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { FaCartShopping } from "react-icons/fa6";
 import useCart from "../../../hooks/useCart";
 import { toast } from "react-toastify";
+import useAdmin from "../../../hooks/useAdmin";
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
-  const [cart] = useCart()
+  const [isAdmin, isAdminLoading] = useAdmin();
+  const [cart] = useCart();
 
   const handleSignOut = () => {
     signOutUser();
@@ -39,18 +41,34 @@ const Navbar = () => {
           CONTACT US
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to={"/dashboard"}
-          className={({ isActive }) =>
-            `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${
-              isActive ? " text-[#EEFF25]" : ""
-            }`
-          }
-        >
-          DASHBOARD
-        </NavLink>
-      </li>
+      {user && isAdmin && (
+        <li>
+          <NavLink
+            to={"/dashboard/admin-home"}
+            className={({ isActive }) =>
+              `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${
+                isActive ? " text-[#EEFF25]" : ""
+              }`
+            }
+          >
+            DASHBOARD
+          </NavLink>
+        </li>
+      )}
+      {user && !isAdmin && (
+        <li>
+          <NavLink
+            to={"/dashboard/user-home"}
+            className={({ isActive }) =>
+              `font-bold btn btn-sm btn-ghost hover:text-yellow-300 hover:bg-transparent ${
+                isActive ? " text-[#EEFF25]" : ""
+              }`
+            }
+          >
+            DASHBOARD
+          </NavLink>
+        </li>
+      )}
       <li>
         <NavLink
           to={"/menu"}
@@ -119,10 +137,12 @@ const Navbar = () => {
           <div className="hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
-          <Link to={'/dashboard/my-cart'}>
+          <Link to={"/dashboard/my-cart"}>
             <button className="flex items-center">
-              <FaCartShopping className="text-3xl"/>
-              <div className="badge badge-sm mr-2 mb-4 badge-secondary">{cart.length}</div>
+              <FaCartShopping className="text-3xl" />
+              <div className="badge badge-sm mr-2 mb-4 badge-secondary">
+                {cart.length}
+              </div>
             </button>
           </Link>
           {user && user?.email ? (
